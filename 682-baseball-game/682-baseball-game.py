@@ -3,14 +3,13 @@ class Solution:
         stack = []
         
         for op in ops:
-            if str.isdigit(op.lstrip('-')):
-                stack.append(int(op))
+            if op == 'C':
+                stack.pop()
+            elif op == 'D':
+                stack.append(stack[-1] * 2)
+            elif op == '+':
+                stack.append(stack[-2] + stack[-1])
             else:
-                if op == 'C':
-                    stack.pop()
-                elif op == 'D':
-                    stack.append(stack[-1] * 2)
-                elif op == '+':
-                    stack.append(stack[-2] + stack[-1])
+                stack.append(int(op))
         return sum(stack)
         
