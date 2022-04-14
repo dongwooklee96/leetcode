@@ -1,17 +1,3 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-
-def traverse(node):
-    if not node:
-        return
-    ret.append(node.val)
-    traverse(node.left)
-    traverse(node.right)
-
 def search(node, val):
     if not node:
         return
