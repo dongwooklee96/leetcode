@@ -3,27 +3,17 @@ import collections
 
 class Solution:
     def shiftGrid(self, grid: List[List[int]], k: int) -> List[List[int]]:
-        width = len(grid[0])
-        height = len(grid)
+        m = len(grid[0])
+        n = len(grid)
         
-        deque = collections.deque(list(itertools.chain.from_iterable(grid)))
+        flat = []
+        for i in grid:
+            flat.extend(i)
         
-        for i in range(k):
-            temp = deque.pop()
-            deque.appendleft(temp)
+        k = k % len(flat)
         
+        flat = flat[-k:] + flat[:-k]
         ret = []
-        for _ in range(height):
-            temp = []
-            for _ in range(width):
-                temp.append(deque.popleft())
-            ret.append(temp)
+        for i in range(n):
+            ret.append(flat[i*m:m*(i+1)])
         return ret
-                
-                
-                
-        
-        
-            
-        
-        
