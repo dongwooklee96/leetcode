@@ -8,20 +8,16 @@ class Solution:
         st1 = []
         st2 = []
         
-        l1_curr = l1
-        l2_curr = l2
-        
         head = None
         
-        while l1_curr != None:
-            st1.append(l1_curr.val)
-            l1_curr = l1_curr.next
+        while l1:
+            st1.append(l1.val)
+            l1 = l1.next
 
-        while l2_curr != None:
-            st2.append(l2_curr.val)
-            l2_curr = l2_curr.next
-        
-        carry = 0
+        while l2:
+            st2.append(l2.val)
+            l2 = l2.next
+        carry = 0 
         while st1 or st2:
             num1 = st1.pop() if st1 else 0
             num2 = st2.pop() if st2 else 0
@@ -29,16 +25,17 @@ class Solution:
             carry, num = divmod(num1 + num2 + carry, 10)
             
             node = ListNode(num)
-            if head == None:
+            if not head:
                 head = node
             else:
                 temp = head
                 head = node
                 node.next = temp
-        if carry != 0:
+        if carry:
             node = ListNode(carry)
             temp = head
             head = node
             node.next = temp
-        return head    
+        return head
+            
             
