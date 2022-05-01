@@ -1,19 +1,15 @@
+import heapq
 class Solution:
     def thirdMax(self, nums: List[int]) -> int:
-        nums.sort(reverse=True)
-        if len(nums) < 3:
-            return nums[0]
+        prio_queue = [item * -1 for item in list(dict.fromkeys(nums))]
         
-        _set = set()
-        ret = nums[0]
-        cnt = 0
-        for n in nums:
-            if n in _set:
-                continue
-            if cnt == 2:
-                ret = n
-                break
-            _set.add(n)
-            cnt += 1
-        return ret
+        heapq.heapify(prio_queue)
+        
+        
+        if len(prio_queue) > 2:
+            for _ in range(2):
+                heapq.heappop(prio_queue)
+        
+        
+        return prio_queue[0] * -1
         
