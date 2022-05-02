@@ -1,4 +1,14 @@
 from collections import deque
 class Solution:
     def sortArrayByParity(self, nums: List[int]) -> List[int]:
-        return [num for num in nums if num % 2 == 0] + [num for num in nums if num % 2 != 0]
+        if len(nums) <= 1:
+            return nums
+        index = 0
+        
+        for i in range(len(nums)):
+            if nums[i] % 2 != 0:
+                continue
+            
+            nums[index], nums[i] = nums[i], nums[index]
+            index += 1
+        return nums    
