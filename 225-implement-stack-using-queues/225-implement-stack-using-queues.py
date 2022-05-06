@@ -1,19 +1,26 @@
+from collections import deque
+
 class MyStack:
 
     def __init__(self):
-        self.queue = []
+        self.q1 = deque()
+        self.q2 = deque()
 
     def push(self, x: int) -> None:
-        self.queue.append(x)
+        self.q2.append(x)
+        
+        while len(self.q1) != 0:
+            self.q2.append(self.q1.popleft())
+        self.q1, self.q2 = self.q2, self.q1
 
     def pop(self) -> int:
-        return self.queue.pop()
-        
+        return self.q1.popleft()
+            
     def top(self) -> int:
-        return self.queue[-1]
+        return self.q1[0]
         
     def empty(self) -> bool:
-        return True if not self.queue else False
+        return True if not self.q1 else False
 
 
 # Your MyStack object will be instantiated and called as such:
